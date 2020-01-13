@@ -122,8 +122,9 @@ export default class Group extends BaseGroup {
         if (typeof value === 'number') {
             this._selected = [value + ''];
         }
-        if (typeof value === 'object') {
-            this._selected = value;
+        // 这么改是最简单的
+        if (lodash.isArray(value)) {
+            this._selected = value.map(item => item + '');
         }
         this.init();
     }

@@ -62,11 +62,16 @@
                       <dropdown v-bind="p"></dropdown>
                   </template>
               </form-item>
-              <!-- <form-item class="form-group" :model="model" attr="stayCity">
+
+
+              <form-item class="form-group" :model="model" attr="stayCity">
                   <template v-slot="p">
                       <groupinput v-bind="p"></groupinput>
                   </template>
-              </form-item> -->
+              </form-item>
+
+
+
               <form-item class="form-group" :model="model" attr="sex">
                   <template v-slot="slotProps">
                       <groupinput v-bind="slotProps">
@@ -168,9 +173,17 @@ var app = new Vue({
     ledap.App.request({
         url: "/data/model.json"
     },(data) =>{
+        console.log(11, data);
+
+
+        data.stayCity.rules[0].options.list = ['北京', '上海', '广州', '杭州'];
+        // data.stayCity.value = [];
+        data.stayCity.value = [0, 1];
+
+
         this.model1 = ledap.App.getModel(data);
-        this.model.load(data);
-        // this.model = this.model1;
+        // this.model.load(data);
+        this.model = this.model1;
     }, (error) => {});
     //假设后端返回正常的key, value数据
     this.model2.load({

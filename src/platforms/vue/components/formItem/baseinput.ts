@@ -21,8 +21,11 @@ export default {
                 return {};
             },
         },
-   
+        maxlength: {
+            type: [Number, String],
+            default: 99999
+        }
     },
-    template: `<component :is="tag" :name="attr" :value="model[attr]" :placeholder="model.getAttributeHint(attr)" v-on="inputListeners" ></component>
+    template: `<component :is="tag" :name="attr" :value="model[attr]" :placeholder="model.getAttributeHint(attr)" v-on="inputListeners" :maxlength="model.getValidatorData(attr, 'string', 'max') || maxlength"></component>
     `,
 };

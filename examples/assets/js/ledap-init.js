@@ -8,7 +8,7 @@ var themeConfig = {
             </slot>
             <div class="col-sm-10">
                 <slot :model="model" :attr="attr" :validate="validate" :inputListeners="inputListeners">
-                    <input class="form-control" :name="attr" :value="model[attr]" :placeholder="model.getAttributeHint(attr)" v-on="inputListeners" />
+                    <baseinput :model="model" :attr="attr" :inputListeners="inputListeners" v-bind="$attrs"></baseinput>
                 </slot>
                 <slot name="error" :model="model" :attr="attr" :showError="showError">
                     <p v-show="showError" class="help-block">{{showError}}</p>
@@ -16,8 +16,8 @@ var themeConfig = {
             </div>
         </component>`,
     },
-    "baseinput" : {
-        template : `<component :is="tag" class="form-control" :name="attr" :value="model[attr]" :placeholder="model.getAttributeHint(attr)" v-on="inputListeners"></component>`,
+    "baseinput": {
+        template: `<component :is="tag" class="form-control" :name="attr" :value="model[attr]" :placeholder="model.getAttributeHint(attr)" v-on="inputListeners" v-bind="$attrs" :maxlength="model.getValidatorData(attr, 'string', 'max') || maxlength"></component>`,
     },
     "dropdown": {
         template: `<select class="form-control" v-on="inputListeners">

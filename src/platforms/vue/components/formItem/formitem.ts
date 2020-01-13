@@ -72,10 +72,11 @@ export default {
             <label> {{model.getAttributeLabel(attr)}}{{model.isRequired(attr) ? '*' : ''}}</label>
         </slot>
         <slot :model="model" :attr="attr" :validate="validate" :inputListeners="inputListeners">
-            <input :name="attr" :value="model[attr]" :placeholder="model.getAttributeHint(attr)" v-on="inputListeners" />
+            <baseinput :model="model" :attr="attr" :inputListeners="inputListeners" v-bind="$attrs"></baseinput>
         </slot>
         <slot name="error" :model="model" :attr="attr" :showError="showError">
             <p v-show="showError">{{showError}}</p>
         </slot>
     </component>`,
+    depends: ['baseinput'],
 };

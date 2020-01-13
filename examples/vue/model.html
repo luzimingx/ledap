@@ -36,6 +36,12 @@
           <p>下面我们来看一下model来结合表单的书写，这个页面的代码极为简单：</p>
           <hr>
           <form class="form-horizontal col-sm-8 col-sm-offset-3">
+              <form-item :model="model" attr="name" class="form-group"></form-item>
+
+
+
+
+
               <form-item class="form-group" :model="model" :attr="'phone'" type="tel" maxlength="11">
                   <template v-slot="p">
                     <div class="input-group">
@@ -44,13 +50,21 @@
                     </div>
                   </template>
               </form-item>
+
               <form-item class="form-group" :model="model" :attr="'phone'" type="tel">
                   <template v-slot="p">
                       <baseinput v-bind="p" tag="textarea" rows="8" maxlength="100"></baseinput>
                   </template>
               </form-item>
+
               <form-item1 class="form-group" :model="model" attr="phone" :validate="['input']" @input="test">
               </form-item1>
+
+
+
+
+
+
               <form-item class="form-group" :model="model" attr="search">
                   <template v-slot="p">
                       <select2 v-bind="p" :data-provider="dp" @choose="choose" item-name="name">
@@ -62,16 +76,11 @@
                       <dropdown v-bind="p"></dropdown>
                   </template>
               </form-item>
-
-
               <form-item class="form-group" :model="model" attr="stayCity">
                   <template v-slot="p">
                       <groupinput v-bind="p"></groupinput>
                   </template>
               </form-item>
-
-
-
               <form-item class="form-group" :model="model" attr="sex">
                   <template v-slot="slotProps">
                       <groupinput v-bind="slotProps">
@@ -177,7 +186,6 @@ var app = new Vue({
 
 
         data.stayCity.rules[0].options.list = ['北京', '上海', '广州', '杭州'];
-        // data.stayCity.value = [];
         data.stayCity.value = [0, 1];
 
 

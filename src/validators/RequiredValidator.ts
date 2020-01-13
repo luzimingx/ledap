@@ -43,12 +43,9 @@ export default class RequiredValidator extends Validator {
     }
 
     public isEmpty(value): boolean {
-        if (lodash.isString(value)) {
-            return lodash.trim(value).length === 0;
-        }
         if (lodash.isObject(value)) {
             return lodash.isEmpty(value);
         }
-        return value === 0;
+        return !value;
     }
 }

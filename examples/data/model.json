@@ -1,4 +1,13 @@
 {
+    "name": {
+        "label": "姓名",
+        "hint": "请输入姓名",
+        "rules": [{
+            "type": "required",
+            "options": { "message": "姓名不能为空" }
+        }],
+        "value": null
+    },
     "city": {
         "label": "城市",
         "rules": [

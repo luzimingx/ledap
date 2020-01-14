@@ -6,49 +6,6 @@ import Pagination from './Pagination';
 // 分页器类,主要是来解决分页的问题
 export default class DataProvider extends BaseObject {
 
-    public static SORT_ASC = 4;
-    public static SORT_DESC = 3;
-
-    public static getInstance(data: object, searchModelClass: any = Model, modelClass: any = Model, paginationClass: any = Pagination): DataProvider {
-        const config =  {
-            data,
-            searchModelClass,
-            modelClass,
-            paginationClass,
-        };
-        return new DataProvider(config);
-    }
-
-    public searchModel: Model;
-    public pager: Pagination;
-    public models: Model[];
-    public isLoad: boolean = false;
-    public modelClass: any;
-    public searchModelClass: any;
-    public paginationClass: any;
-
-    public _sort: object = {};
-
-    constructor(config: object) {
-        super();
-        this.searchModelClass = lodash.get(config, 'searchModelClass', Model);
-        this.modelClass = lodash.get(config, 'modelClass', Model);
-        this.paginationClass = lodash.get(config, 'paginationClass', Pagination);
-
-        this.searchModel = lodash.get(config, 'searchModel', '');
-        if (lodash.isEmpty(this.searchModel)) {
-            this.searchModel = new this['searchModelClass']();
-        }
-        this.pager = lodash.get(config, 'pager', '');
-        if (lodash.isEmpty(this.pager)) {
-            this.pager = new this['paginationClass']();
-        }
-        this.sort = lodash.get(config, 'sort', '');
-        const data = lodash.get(config, 'data', {});
-        this.load(data);
-    }
-
-
     get sort(): string|object {
         const arr = [];
         if (lodash.isEmpty(this._sort)) {
@@ -82,25 +39,65 @@ export default class DataProvider extends BaseObject {
             });
         }
         if (lodash.isEmpty(sort)) {
-            sort = {};
+            sort = {};    
         }
-
+        
         if (typeof (sort) === 'object') {
             this._sort = sort;
         }
+    }
+    public static SORT_ASC = 4;
+    public static SORT_DESC = 3;
+
+    public static getInstance(data: object, searchModelClass: any = Model, modelClass: any = Model, paginationClass: any = Pagination): DataProvider {
+        const config =  {
+            data,
+            searchModelClass,
+            modelClass,
+            paginationClass,
+        };
+        return new DataProvider(config);
+    }
+    public searchModel: Model;
+    public pager: Pagination;
+    public models: Model[];
+    public isLoad: boolean = false;
+    public modelClass: any;
+    public searchModelClass: any;
+    public paginationClass: any;
+
+    public _sort: object = {};
+
+    constructor(config: object) {
+        super();
+        this.searchModelClass = lodash.get(config, 'searchModelClass', Model);
+        this.modelClass = lodash.get(config, 'modelClass', Model);
+        this.paginationClass = lodash.get(config, 'paginationClass', Pagination);
+
+        this.searchModel = lodash.get(config, 'searchModel', '');
+        if (lodash.isEmpty(this.searchModel)) {
+            this.searchModel = new this['searchModelClass']();
+        }
+        this.pager = lodash.get(config, 'pager', '');
+        if (lodash.isEmpty(this.pager)) {
+            this.pager = new this['paginationClass']();
+        }
+        this.sort = lodash.get(config, 'sort', '');
+        const data = lodash.get(config, 'data', {});
+        this.load(data);
     }
 
     public isSortAsc(attribute) {
         if (this._sort[attribute] === DataProvider.SORT_ASC) {
             return true;
-        }
+        } 
         return false;
     }
 
     public isSortDesc(attribute) {
         if (this._sort[attribute] === DataProvider.SORT_DESC) {
             return true;
-        }
+        } 
         return false;
     }
 

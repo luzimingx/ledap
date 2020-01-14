@@ -1,6 +1,7 @@
 import Model from '../../../../base/Model';
 export default {
     name: 'form-item',
+    inheritAttrs: false,
     props: {
         tag: {
             type: String,

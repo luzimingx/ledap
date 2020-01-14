@@ -5,8 +5,20 @@
         "rules": [{
             "type": "required",
             "options": { "message": "姓名不能为空" }
+        }, {
+            "type": "string",
+            "options": { "message": "必须是字符串", "max": 5 }
         }],
         "value": null
+    },
+    "introduce": {
+        "label": "简介",
+        "hint": "请输入简介",
+        "rules": [{
+            "type": "required",
+            "options": { "message": "不能为空" }
+        }],
+        "value": ""
     },
     "city": {
         "label": "城市",

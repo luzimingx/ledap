@@ -17,7 +17,13 @@ var themeConfig = {
         </component>`,
     },
     "baseinput": {
-        template: `<component :is="tag" class="form-control" :name="attr" :value="model[attr]" :placeholder="model.getAttributeHint(attr)" v-on="inputListeners" v-bind="$attrs" :maxlength="model.getValidatorData(attr, 'string', 'max') || maxlength"></component>`,
+        template: `<div><template v-if="tag !== 'textarea'">
+                <input class="form-control" :name="attr" :value="model[attr]" :placeholder="model.getAttributeHint(attr)" v-on="inputListeners" v-bind="$attrs" :maxlength="cMaxlength">
+            </template>
+            <template v-else>
+                <textarea class="form-control" :name="attr" :value="model[attr]" :placeholder="model.getAttributeHint(attr)" v-on="inputListeners" v-bind="$attrs" :maxlength="cMaxlength">
+                </textarea>
+            </template></div>`,
     },
     "dropdown": {
         template: `<select class="form-control" v-on="inputListeners">

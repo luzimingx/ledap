@@ -122,7 +122,7 @@ export default class Group extends BaseGroup {
         if (typeof value === 'number') {
             this._selected = [value + ''];
         }
-        // 这么改是最简单的
+        // 由于_selected中元素取自_components的key，因此赋值的时候也强制转为string
         if (lodash.isArray(value)) {
             this._selected = value.map(item => item + '');
         }

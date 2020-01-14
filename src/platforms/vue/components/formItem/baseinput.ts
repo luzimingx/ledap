@@ -1,5 +1,6 @@
 export default {
     name: 'baseinput',
+    inheritAttrs: false,
     props: {
         tag: {
             type: String,
@@ -26,6 +27,11 @@ export default {
             default: 99999
         }
     },
-    template: `<component :is="tag" :name="attr" :value="model[attr]" :placeholder="model.getAttributeHint(attr)" v-on="inputListeners" :maxlength="model.getValidatorData(attr, 'string', 'max') || maxlength"></component>
+    computed: {
+        cMaxlength() {
+            return this.model.getValidatorData(this.attr, 'string', 'max') || this.maxlength;
+        }
+    },
+    template: `<component :is="tag" :name="attr" :value="model[attr]" :placeholder="model.getAttributeHint(attr)" v-on="inputListeners" :maxlength="cMaxlength" v-bind="$attrs"></component>
     `,
 };

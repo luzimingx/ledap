@@ -16,11 +16,10 @@ export default class Model extends BaseObject {
     // 当前的场景
     public _scenario: string = Model.SCENARIO_DEFAULT;
     // 当前的校验器
-    public _validators: Validator[];
+    public _validators: Validator[] = [];
 
     constructor() {
         super();
-        // NOTE: 初始化的工作进行了两次，应该可以删除下面的吧
         this._errors = {};
         this._scenario = '';
         this._validators = [];

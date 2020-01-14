@@ -36,35 +36,22 @@
           <p>下面我们来看一下model来结合表单的书写，这个页面的代码极为简单：</p>
           <hr>
           <form class="form-horizontal col-sm-8 col-sm-offset-3">
-              <form-item :model="model" attr="name" class="form-group"></form-item>
-
-
-
-
-
-              <form-item class="form-group" :model="model" :attr="'phone'" type="tel" maxlength="11">
-                  <template v-slot="p">
-                    <div class="input-group">
-                      <span class="input-group-addon" id="basic-addon2">+86</span>
-                        <baseinput v-bind="p"></baseinput>
-                    </div>
-                  </template>
-              </form-item>
-
-              <form-item class="form-group" :model="model" :attr="'phone'" type="tel">
+              <form-item :model="model" attr="name" class="form-group" type="text" maxlength="10"></form-item>
+              <form-item class="form-group" :model="model" attr="introduce">
                   <template v-slot="p">
                       <baseinput v-bind="p" tag="textarea" rows="8" maxlength="100"></baseinput>
                   </template>
               </form-item>
-
+              <form-item class="form-group" :model="model" :attr="'phone'">
+                  <template v-slot="p">
+                    <div class="input-group">
+                      <span class="input-group-addon" id="basic-addon2">+86</span>
+                        <baseinput v-bind="p" maxlength="11" type="tel"></baseinput>
+                    </div>
+                  </template>
+              </form-item>
               <form-item1 class="form-group" :model="model" attr="phone" :validate="['input']" @input="test">
               </form-item1>
-
-
-
-
-
-
               <form-item class="form-group" :model="model" attr="search">
                   <template v-slot="p">
                       <select2 v-bind="p" :data-provider="dp" @choose="choose" item-name="name">
@@ -170,7 +157,8 @@ var app = new Vue({
               },
           }),
           model :  ledap.App.getModel({
-              phone: ''
+              phone: '',
+              introduce: ''
           }),
           model1 : new Model(),
           model2 : new LocalModel()
@@ -182,16 +170,10 @@ var app = new Vue({
     ledap.App.request({
         url: "/data/model.json"
     },(data) =>{
-        console.log(11, data);
-
-
-        data.stayCity.rules[0].options.list = ['北京', '上海', '广州', '杭州'];
-        data.stayCity.value = [0, 1];
-
-
         this.model1 = ledap.App.getModel(data);
-        // this.model.load(data);
-        this.model = this.model1;
+        // load data要提前列出各个字段 或者直接重新赋值为另一个model
+        this.model.load(data);
+        // this.model = this.model1;
     }, (error) => {});
     //假设后端返回正常的key, value数据
     this.model2.load({

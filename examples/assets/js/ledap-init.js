@@ -33,7 +33,7 @@ var themeConfig = {
     "groupinput": {
         template: `<group class="btn-group" :max="dictOption.max" :excludes="dictOption.excludes" :init-value="model[attr]" :multiple="dictOption.multiple" @change="groupChange">
             <slot name="default" v-for="(val,key) in dictOption.list" :data-key="key" :value="val" :disabled="dictOption.excludes.indexOf(key) > -1 ? true : false">
-                <tab class="btn btn-default" :disabled="dictOption.excludes.indexOf(key) > -1 ? true : false" :data-key="key" :key="key">{{ key + typeof key }} {{val}}</tab>
+                <tab class="btn btn-default" :disabled="dictOption.excludes.indexOf(key) > -1 ? true : false" :data-key="key" :key="key">{{val}}</tab>
             </slot>
         </group>`,
     },

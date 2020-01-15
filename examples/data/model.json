@@ -20,6 +20,15 @@
         }],
         "value": ""
     },
+    "age": {
+        "label": "年龄",
+        "hint": "请输入年龄",
+        "rules": [{
+            "type": "number",
+            "options": { "message": "xxx", "max": 200, "min": 18 }
+        }],
+        "value": ""
+    },
     "city": {
         "label": "城市",
         "rules": [
@@ -84,10 +93,11 @@
             "options": {
               "list": {
                 "1": "男",
-                "2": "女"
+                "2": "女",
+                "3": "不可用"
               },
               "multiple": false,
-              "excludes" : [],
+              "excludes" : ["3"],
               "message": "性别不正确",
               "skipOnEmpty": 1
             }
@@ -146,6 +156,6 @@
       "search": {
         "label": "搜索",
         "hint" : "关键词",
-        "value": ""
+        "value": 1
       }
 }
